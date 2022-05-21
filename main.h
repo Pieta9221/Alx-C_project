@@ -7,17 +7,17 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define OUTPT_BUFF_SIZE 1024
-#define BUF_F -1
+#define OUTPT_BUF_SIZE 1024
+#define BUF_FLUSH -1
 
-#define FIELD_BUF_WIDTH 50
+#define FIELD_BUF_SIZE 50
 
-#define NULL_LINE "(null)"
+#define NULL_STRING "(null)"
 
-#define PARAMETERS {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+#define PARAMS_INIT {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
-#define LOWERCASE_CONV 1
-#define UNSIGNED_CONV 2
+#define CONVERT_LOWERCASE 1
+#define CONVERT_UNSIGNED 2
 
 /**
  * struct params - parameters for struct
@@ -38,7 +38,7 @@
  *
  */
 
-typrdef struct params
+typedef struct params
 {
 	unsigned int unsign : 1;
 
@@ -79,7 +79,7 @@ int print_p(va_list ap, params_t *params);
 int print_S(va_list ap, params_t *params);
 
 /* number module */
-char *conversion(long int num, int base, int flags, params_t *params);
+char *convert(long int num, int base, int flags, params_t *params);
 int unsign_p(va_list ap, params_t *params);
 int address(va_list ap, params_t *params);
 
