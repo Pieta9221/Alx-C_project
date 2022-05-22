@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * convert - conveter function, a clone of itoa.
- * @num: number.
- * @base: base.
- * @flags: arguments flags.
- * @params: parameter struct.
+ * convert - converter function, a clone of itoa
+ * @num: number
+ * @base: base
+ * @flags: argument flags
+ * @params: paramater struct
  *
- * Return: string.
+ * Return: string
  */
 char *convert(long int num, int base, int flags, params_t *params)
 {
@@ -28,8 +28,8 @@ char *convert(long int num, int base, int flags, params_t *params)
 	ptr = &buffer[49];
 	*ptr = '\0';
 
-	do {
-		*--ptr = aray[n % base];
+	do	{
+		*--ptr = array[n % base];
 		n /= base;
 	} while (n != 0);
 
@@ -39,35 +39,36 @@ char *convert(long int num, int base, int flags, params_t *params)
 }
 
 /**
- * unsign_p - prints unsined integer numbers.
- * @ap: argument pointer.
- * @params: the parameters struct.
+ * print_unsigned - prints unsigned integer numbers
+ * @ap: argument pointer
+ * @params: the parameters struct
  *
- * Return: bytes printed.
+ * Return: bytes printed
  */
-int unsign_p(va_list ap, params_t *params)
+int print_unsigned(va_list ap, params_t *params)
 {
 	unsigned long l;
 
-	if (params->l_mod)
+	if (params->l_modifier)
 		l = (unsigned long)va_arg(ap, unsigned long);
-	else if (params->h_mod)
+	else if (params->h_modifier)
 		l = (unsigned short int)va_arg(ap, unsigned int);
 	else
 		l = (unsigned int)va_arg(ap, unsigned int);
 	params->unsign = 1;
-	return (print_num(convert(1, 10, CONVERT_UNSIGNED, params), params));
+	return (print_number(convert(l, 10, CONVERT_UNSIGNED, params), params));
 }
 
 
+
 /**
- * address - prints address.
- * @ap: argment pointer.
- * @params: the parameters struct 
+ * print_address - prints address
+ * @ap: argument pointer
+ * @params: the parameters struct
  *
- * Return: bytes printed.
+ * Return: bytes printed
  */
-int address(va_list ap, params_t *params)
+int print_address(va_list ap, params_t *params)
 {
 	unsigned long int n = va_arg(ap, unsigned long int);
 	char *str;
@@ -78,6 +79,6 @@ int address(va_list ap, params_t *params)
 	str = convert(n, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, params);
 	*--str = 'x';
 	*--str = '0';
-	return (print_num(str, params));
+	return (print_number(str, params));
 }
 
