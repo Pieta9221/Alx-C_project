@@ -65,7 +65,7 @@ int print_number_right(char *str, params_t *params)
 		str++;
 	else
 		neg = 0;
-	if ((params->add_flag && !neg2) || (params->empty_flag && !neg2))
+	if ((params->add_flag && !neg2) || (!params->add_flag && params->empty_flag && !neg2))
 		i++;
 	if (neg && pad_char == '0')
 		n += _putchar('-');
@@ -79,7 +79,7 @@ int print_number_right(char *str, params_t *params)
 		n += _putchar('-');
 	if (params->add_flag && !neg2 && pad_char == ' ' && !params->unsign)
 		n += _putchar('+');
-	else if (!params->add_flag && params->empty_flag && !neg2 && !params->unsign && !params->zero_flag)
+	else if (!params->add_flag && params->empty_flag && !neg2 && !params->unsign && !params->null_flag)
 		n += _putchar(' ');
 	n += _puts(str);
 	return (n);
@@ -124,6 +124,6 @@ int print_number_left(char *str, params_t *params)
 
 int _isdigit(int c)
 {
-	return (c >= '0 && c <= '9');
+	return (c >= '0' && c <= '9');
 }
 	
