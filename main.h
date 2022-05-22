@@ -85,10 +85,10 @@ int address(va_list ap, params_t *params);
 
 /*specifier module */
 int (*get_spec(char *s))(va_list ap, params_t *params);
-int get_function(char *s, va_list ap, params_t *params);
+int get_func(char *s, va_list ap, params_t *params);
 int get_flag(char *s, params_t *params);
 char *get_width(char *s, params_t *params, va_list ap);
-int get_mod(char *s, params_t *params);
+int get_modifier(char *s, params_t *params);
 
 /* convert to number module */
 int print_x(va_list ap, params_t *params);

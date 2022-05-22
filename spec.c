@@ -1,14 +1,14 @@
 #include "main.h"
 
 /**
- * get_specifier - finds the format function
+ * get_spec - finds the format function
  * @s: the string format
  *
  * Return: number of bytes printed
  */
-int (*get_specifier(char *s))(va_list ap, params_t *params)
+int (*get_spec(char *s))(va_list ap, params_t *params)
 {
-	specifier_t specifiers[] = {
+	spec_t spec[] = {
 		{"c", print_c},
 		{"d", print_i},
 		{"i", print_i},
@@ -27,11 +27,11 @@ int (*get_specifier(char *s))(va_list ap, params_t *params)
 	};
 	int i = 0;
 
-	while (specifiers[i].specifier)
+	while (spec[i].spec)
 	{
-		if (*s == specifiers[i].specifier[0])
+		if (*s == spec[i].spec[0])
 		{
-			return (specifiers[i].f);
+			return (spec[i].f);
 		}
 		i++;
 	}
@@ -48,7 +48,7 @@ int (*get_specifier(char *s))(va_list ap, params_t *params)
  */
 int get_func(char *s, va_list ap, params_t *params)
 {
-	int (*f)(va_list, params_t *) = get_specifier(s);
+	int (*f)(va_list, params_t *) = get_spec(s);
 
 	if (f)
 		return (f(ap, params));

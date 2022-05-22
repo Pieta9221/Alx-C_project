@@ -37,9 +37,9 @@ int _printf(const char *format, ...)
 		p = get_precision(p, &params, ap);
 		if (get_mod(p, &params))
 			p++;
-		if (!get_specifier(p))
-			sum += print_to_from(start, p,
-				params.l_modifier || params.h_modifier ? p - 1 : 0);
+		if (!get_spec(p))
+			sum += print_to_fro(start, p,
+				params.l_mod || params.h_mod ? p - 1 : 0);
 		else
 			sum += get_print_func(p, ap, &params);
 	}
